@@ -1,6 +1,134 @@
 <!DOCTYPE html>
-<html style="background:#ffffff; display:flex; justify-content:center; align-items:center; height:100vh; margin:0;">
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>電子名片 | 聯絡資訊</title>
+  <style>
+    :root {
+      --primary-color: #c8161d; /* 主題藍色，可自由修改 */
+      --text-main: #1f2937;
+      --text-sub: #4b5563;
+      --bg-card: #f9fafb;
+    }
+    body {
+      background-color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 30px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-main);
+    }
+    .card-container {
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      letter-spacing: 0.5px;
+    }
+    .company {
+      font-size: 15px;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+    }
+    /* 一鍵存入通訊錄按鈕 */
+    .btn-save {
+      display: block;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+      transition: transform 0.2s;
+    }
+    .btn-save:active {
+      transform: scale(0.98);
+    }
+    /* 詳細資訊區塊 */
+    .info-list {
+      background-color: var(--bg-card);
+      border-radius: 16px;
+      padding: 8px 16px;
+      text-align: left;
+    }
+    .info-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .info-item:last-child {
+      border-bottom: none;
+    }
+    .info-label {
+      font-size: 12px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .info-value {
+      font-size: 15px;
+      color: var(--text-main);
+      word-break: break-all;
+      text-decoration: none;
+    }
+    a.info-value {
+      color: var(--primary-color);
+    }
+  </style>
+</head>
 <body>
-  <img src="20260710電子名片_Lukechen-1.jpg" style="max-width:100%; max-height:100%;">
+
+  <div class="card-container">
+    <img src="avatar.jpg" alt="Avatar" class="avatar">
+
+    <!-- 姓名與公司 -->
+    <h1 class="name">陳永恒 Luke Chen</h1>
+    <div class="company">台虹科技股份有限公司 · 董事長 Chairman</div>
+
+    <!-- 一鍵建檔按鈕（直接連結到上傳的 vcf 檔案） -->
+    <a href="business-card.vcf" download class="btn-save">👤 存入通訊錄 / 建檔</a>
+
+    <!-- 詳細聯絡資料 -->
+    <div class="info-list">
+      <div class="info-item">
+        <span class="info-label">電話</span>
+        <a href="tel:0912345678" class="info-value">+886-7-813-9225</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">電子郵件</span>
+        <a href="mailto:lukec@taiflex.com.twm" class="info-value">service@example.com</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">官方網站</span>
+        <a href="https://www.taiflex.com.tw/" target="_blank" class="info-value">://xn--lduo00cc7ckrd.com</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">地址</span>
+        <span class="info-value">806高雄市前鎮區高雄前鎮科技產業園區環區三路一號
+</span>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
