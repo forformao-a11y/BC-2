@@ -23,7 +23,7 @@
     }
     .card-container {
       width: 100%;
-      max-width: 360px;
+      max-width: 480px; /* 因應大螢幕左右並排，微調容器最大寬度 */
       text-align: center;
     }
     /* 專為 2301x523 橫式 LOGO 優化的樣式 */
@@ -56,7 +56,7 @@
       font-weight: 600;
       font-size: 16px;
       margin-top: 28px;
-      margin-bottom: 35px; /* 增加下邊距，與下方的實體名片圖片保持距離 */
+      margin-bottom: 35px;
       box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
       transition: transform 0.2s;
     }
@@ -107,17 +107,37 @@
       font-weight: 600;
       margin-bottom: 15px;
     }
+    /* 核心 RWD 機制：預設（手機環境）為上下直立排列 */
     .namecard-gallery {
       display: flex;
-      flex-direction: column; /* 手機直式畫面上，圖片上下依序排列 */
+      flex-direction: column; 
       gap: 15px; /* 兩張圖片之間的間距 */
       width: 100%;
+    }
+    .namecard-link {
+      display: block;
+      width: 100%;
+      cursor: zoom-in; /* 讓滑鼠游標變成放大鏡，提示使用者可點擊 */
     }
     .namecard-img {
       width: 100%;
       height: auto;
       border-radius: 8px; /* 圓角效果讓名片更好看 */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06); /* 微妙的陰影營運實體質感 */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06); /* 微妙的陰影營造實體質感 */
+      transition: transform 0.2s ease;
+    }
+    .namecard-img:hover {
+      transform: scale(1.02); /* 滑鼠滑過時微幅放大，增強互動感 */
+    }
+
+    /* 💡 智慧切換語法：當螢幕寬度大於 480px（電腦或平板）時觸發 */
+    @media (min-width: 480px) {
+      .namecard-gallery {
+        flex-direction: row; /* 寬度足夠時，自動將圖片切換為左右並排 */
+      }
+      .namecard-link {
+        width: 50%; /* 兩張圖片各佔一半寬度 */
+      }
     }
   </style>
 </head>
@@ -127,18 +147,15 @@
     <!-- 橫式 LOGO：請將 logo.png 改成您儲存庫裡的 LOGO 檔名 -->
     <img src="台虹-標準字-英文+LOGO_1.png" alt="Company Logo" class="company-logo">
 
-   <!-- 姓名與公司 -->
+    <!-- 姓名與公司 -->
     <h1 class="name">陳永恒 Luke Chen</h1>
     <div class="company">台虹科技股份有限公司 · 董事長 Chairman</div>
-
-    <!-- 一鍵建檔按鈕（連結到您的 business-card.vcf） -->
-    <a href="business-card.vcf" download class="btn-save"> 存入通訊錄</a>
 
     <!-- 詳細聯絡資料 -->
     <div class="info-list">
       <div class="info-item">
         <span class="info-label">電話</span>
-        <a href="tel:0912345678" class="info-value">+886-7-813-9225</a>
+        <a href="tel:+886-7-813-9225" class="info-value">+886-7-813-9225</a>
       </div>
       <div class="info-item">
         <span class="info-label">電子郵件</span>
@@ -153,19 +170,22 @@
         <a href="https://maps.app.goo.gl/gFPRDJn9cWmodZff6" target="_blank" class="info-value">806高雄市前鎮區高雄前鎮科技產業園區環區三路一號</a>
       </div>
     </div>
-  </div>
 
     <!-- 一鍵建檔按鈕 -->
     <a href="business-card.vcf" download class="btn-save"> 存入通訊錄 </a>
 
     <!-- 實體名片圖檔顯示區塊 -->
     <div class="namecard-section">
-      <div class="namecard-title">實體名片參考</div>
+      <div class="namecard-title">實體名片參考（點擊可放大觀看）</div>
       <div class="namecard-gallery">
-        <!-- 名片正面：請將 card_front.jpg 改成您的正面圖檔名 -->
-        <img src="20260710電子名片-05.jpg" alt="名片正面" class="namecard-img">
-        <!-- 名片反面：請將 card_back.jpg 改成您的反面圖檔名 -->
-        <img src="20260710電子名片-06.jpg" alt="名片反面" class="namecard-img">
+        <!-- 名片正面：利用 <a> 標籤達成點擊另開大圖 -->
+        <a href="card_front.jpg" target="_blank" class="namecard-link">
+          <img src="20260710電子名片-05.jpg" alt="名片正面" class="namecard-img">
+        </a>
+        <!-- 名片反面：利用 <a> 標籤達成點擊另開大圖 -->
+        <a href="card_back.jpg" target="_blank" class="namecard-link">
+          <img src="20260710電子名片-06.jpg" alt="名片反面" class="namecard-img">
+        </a>
       </div>
     </div>
   </div>
