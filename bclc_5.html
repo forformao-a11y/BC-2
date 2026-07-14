@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>電子名片 | 聯絡資訊</title>
+  <style>
+    :root {
+      --primary-color: #c8161d; /* 主題藍色 */
+      --text-main: #1f2937;
+      --text-sub: #4b5563;
+      --bg-card: #f9fafb;
+    }
+    body {
+      background-color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 40px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-main);
+    }
+    .card-container {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+    }
+    .company-logo {
+      width: auto;
+      height: 50px;
+      max-width: 100%;
+      object-fit: contain;
+      margin-bottom: 28px;
+    }
+    .name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      letter-spacing: 0.5px;
+    }
+    .company {
+      font-size: 15px;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+    }
+    .btn-save {
+      display: block;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 28px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+      transition: transform 0.2s;
+    }
+    .btn-save:active {
+      transform: scale(0.98);
+    }
+    .info-list {
+      background-color: var(--bg-card);
+      border-radius: 16px;
+      padding: 8px 16px;
+      text-align: left;
+    }
+    .info-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .info-item:last-child {
+      border-bottom: none;
+    }
+    .info-label {
+      font-size: 12px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .info-value {
+      font-size: 15px;
+      color: var(--text-main);
+      word-break: break-all;
+      text-decoration: none;
+    }
+    a.info-value {
+      color: var(--primary-color);
+    }
+    .namecard-section {
+      margin-top: 20px;
+      border-top: 1px dashed #e5e7eb;
+      padding-top: 25px;
+    }
+    .namecard-title {
+      font-size: 13px;
+      color: #9ca3af;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .namecard-gallery {
+      display: flex;
+      flex-direction: column; 
+      gap: 15px;
+      width: 100%;
+    }
+    .namecard-img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      cursor: zoom-in; /* 游標變成放大鏡 */
+      transition: transform 0.2s ease;
+    }
+    .namecard-img:hover {
+      transform: scale(1.02);
+    }
+
+    /* 💡 放大彈出視窗 (Lightbox) CSS 裝潢 */
+    .lightbox {
+      display: none; /* 預設隱藏 */
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85); /* 半透明黑底 */
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out; /* 游標變成縮小鏡 */
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+    .lightbox.active .lightbox-img {
+      transform: scale(1);
+    }
+
+    @media (min-width: 480px) {
+      .namecard-gallery {
+        flex-direction: row;
+      }
+      .namecard-img {
+        width: calc(50% - 7.5px); /* 電腦版改為左右並排 */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <!-- 橫式 LOGO：請將 logo.png 改成您儲存庫裡的 LOGO 檔名 -->
+    <img src="台虹-標準字-英文+LOGO_1.png" alt="Company Logo" class="company-logo">
+
+    <!-- 姓名與公司 -->
+    <h1 class="name">陳永恒 Luke Chen</h1>
+    <div class="company">台虹科技股份有限公司 · 董事長 Chairman</div>
+
+    <!-- 詳細聯絡資料 -->
+    <div class="info-list">
+      <div class="info-item">
+        <span class="info-label">電話</span>
+        <a href="tel:+886-7-813-9225" class="info-value">+886-7-813-9225</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">電子郵件</span>
+        <a href="mailto:lukec@taiflex.com.tw" class="info-value">lukec@taiflex.com.tw</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">官方網站</span>
+        <a href="https://www.taiflex.com.tw" target="_blank" class="info-value">https://www.taiflex.com.tw</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">地址</span>
+        <a href="https://maps.app.goo.gl/gFPRDJn9cWmodZff6" target="_blank" class="info-value">806高雄市前鎮區高雄前鎮科技產業園區環區三路一號</a>
+      </div>
+    </div>
+
+    <!-- 一鍵建檔按鈕 -->
+    <a href="business-card.vcf" download class="btn-save"> 存入通訊錄 </a>
+
+    <!-- 實體名片圖檔顯示區塊 -->
+    <div class="namecard-section">
+      <div class="namecard-title">實體名片（點擊可直接放大觀看）</div>
+      <div class="namecard-gallery">
+        <!-- 💡 移除了 <a> 標籤，改用 class 讓 JavaScript 控制，徹底解決 404 問題 -->
+        <img src="20260710電子名片-05" alt="名片正面" class="namecard-img" onclick="openLightbox(this.src)">
+        <img src="20260710電子名片-06" alt="名片反面" class="namecard-img" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+  </div>
+
+  <!-- 💡 隱藏的放大專用黑色大底座 -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" class="lightbox-img" src="" alt="放大圖">
+  </div>
+
+  <!-- 💡 JavaScript 魔術師：控制放大與關閉 -->
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(imageSrc) {
+      lightboxImg.src = imageSrc; // 自動抓取點擊的那張圖片路徑，不再需要手動對齊網址
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+    }
+  </script>
+
+</body>
+</html>
