@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>電子名片 | 聯絡資訊</title>
+  <style>
+    :root {
+      --primary-color: #c8161d; /* 主題藍色，可自由修改 */
+      --text-main: #1f2937;
+      --text-sub: #4b5563;
+      --bg-card: #f9fafb;
+    }
+    body {
+      background-color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 40px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-main);
+    }
+    .card-container {
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+    }
+    /* 專為 2301x523 橫式 LOGO 優化的樣式 */
+    .company-logo {
+      width: auto;
+      height: 50px; /* 固定高度，寬度會等比例自動縮放 */
+      max-width: 100%; /* 確保在小手機上不會爆開 */
+      object-fit: contain;
+      margin-bottom: 28px;
+    }
+    .name {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      letter-spacing: 0.5px;
+    }
+    .company {
+      font-size: 15px;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+    }
+    /* 一鍵存入通訊錄按鈕 */
+    .btn-save {
+      display: block;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 28px;
+      margin-bottom: 35px; /* 增加下邊距，與下方的實體名片圖片保持距離 */
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+      transition: transform 0.2s;
+    }
+    .btn-save:active {
+      transform: scale(0.98);
+    }
+    /* 詳細資訊區塊 */
+    .info-list {
+      background-color: var(--bg-card);
+      border-radius: 16px;
+      padding: 8px 16px;
+      text-align: left;
+    }
+    .info-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .info-item:last-child {
+      border-bottom: none;
+    }
+    .info-label {
+      font-size: 12px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .info-value {
+      font-size: 15px;
+      color: var(--text-main);
+      word-break: break-all;
+      text-decoration: none;
+    }
+    a.info-value {
+      color: var(--primary-color);
+    }
+    /* 實體名片圖片排版區塊 */
+    .namecard-section {
+      margin-top: 20px;
+      border-top: 1px dashed #e5e7eb; /* 加上一條精緻的虛線分隔 */
+      padding-top: 25px;
+    }
+    .namecard-title {
+      font-size: 13px;
+      color: #9ca3af;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .namecard-gallery {
+      display: flex;
+      flex-direction: column; /* 手機直式畫面上，圖片上下依序排列 */
+      gap: 15px; /* 兩張圖片之間的間距 */
+      width: 100%;
+    }
+    .namecard-img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px; /* 圓角效果讓名片更好看 */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06); /* 微妙的陰影營運實體質感 */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <!-- 橫式 LOGO：請將 logo.png 改成您儲存庫裡的 LOGO 檔名 -->
+    <img src="台虹-標準字-英文+LOGO_1.png" alt="Company Logo" class="company-logo">
+
+   <!-- 姓名與公司 -->
+    <h1 class="name">陳永恒 Luke Chen</h1>
+    <div class="company">台虹科技股份有限公司 · 董事長 Chairman</div>
+
+    <!-- 一鍵建檔按鈕（連結到您的 business-card.vcf） -->
+    <a href="business-card.vcf" download class="btn-save"> 存入通訊錄</a>
+
+    <!-- 詳細聯絡資料 -->
+    <div class="info-list">
+      <div class="info-item">
+        <span class="info-label">電話</span>
+        <a href="tel:0912345678" class="info-value">+886-7-813-9225</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">電子郵件</span>
+        <a href="mailto:lukec@taiflex.com.tw" class="info-value">lukec@taiflex.com.tw</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">官方網站</span>
+        <a href="https://www.taiflex.com.tw" target="_blank" class="info-value">https://www.taiflex.com.tw</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">地址</span>
+        <a href="https://maps.app.goo.gl/gFPRDJn9cWmodZff6" target="_blank" class="info-value">806高雄市前鎮區高雄前鎮科技產業園區環區三路一號</a>
+      </div>
+    </div>
+  </div>
+
+    <!-- 一鍵建檔按鈕 -->
+    <a href="business-card.vcf" download class="btn-save"> 存入通訊錄 </a>
+
+    <!-- 實體名片圖檔顯示區塊 -->
+    <div class="namecard-section">
+      <div class="namecard-title">實體名片參考</div>
+      <div class="namecard-gallery">
+        <!-- 名片正面：請將 card_front.jpg 改成您的正面圖檔名 -->
+        <img src="20260710電子名片-05.jpg" alt="名片正面" class="namecard-img">
+        <!-- 名片反面：請將 card_back.jpg 改成您的反面圖檔名 -->
+        <img src="20260710電子名片-06.jpg" alt="名片反面" class="namecard-img">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
